@@ -4,7 +4,7 @@
   "description": "React Ventrane Analytics",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require babel-core/register",
     "build": "babel ./src -d ./lib",
     "lint": "eslint ./src"
   },
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "mocha": "^8.3.0"
   }
 }
