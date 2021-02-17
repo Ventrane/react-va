@@ -89,6 +89,36 @@ const ReactVA = () => {
     }
   };
 
+  const click = (button) => {
+    // if no button use platform name
+    if (data.platformName === '') {
+      alert('Visit https://termii.com/account/api to get your api key');
+    } else {
+      fetch(`${REACTVA_URL}/api/v1/button/click/${data.projectId}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          button,
+          APIKey: data.APIKey,
+          device: deviceType(),
+          visitorId: IdFromStorage,
+          ...data.location,
+        }),
+        headers: {
+          'Content-Type': 'Application/json',
+          Accept: 'Application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((locate) => {
+          console.log(locate, '>>>>>>>');
+          socket.emit('click', {
+            platformName: data.platformName,
+          });
+        })
+        .catch((error) => error);
+    }
+  };
+
   const setApi = (platformName, accessKey, APIKey) => {
     data.platformName = platformName;
     data.projectId = accessKey;
@@ -99,6 +129,7 @@ const ReactVA = () => {
     setApi,
     initialize,
     pageView,
+    click,
   };
 };
 
