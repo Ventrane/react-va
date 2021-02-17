@@ -9,12 +9,14 @@ export const socket = socketIOClient(REACTVA_URL, {
 });
 
 const userIdentity = customAlphabet('1234567890abcdef', 3);
+const IdFromStorage = localStorage.getItem('VA-online-ID');
 
 const ReactVA = () => {
   const data = {
     platformName: '',
     projectId: '',
     APIKey: '',
+    location: {},
   };
 
   const deviceType = () => {
@@ -24,7 +26,7 @@ const ReactVA = () => {
     }
     if (
       /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-        ua
+        ua,
       )
     ) {
       return 'mobile';
@@ -39,15 +41,48 @@ const ReactVA = () => {
       fetch(LOCATION_URL)
         .then((res) => res.json())
         .then((locate) => {
+          const { country, city, continent } = locate;
           const device = deviceType();
 
           //   generate a new userID and save it to local-storage
           localStorage.setItem('VA-online-ID', userIdentity());
 
+          data.location = { country, city, continent };
+
           socket.emit('online', {
             platformName: data.platformName,
-            country: locate.country,
+            country,
             device: device(),
+          });
+        })
+        .catch((error) => error);
+    }
+  };
+
+  const pageView = (page) => {
+    // if no page use window.location.pathname + window.location.search
+    if (data.platformName === '') {
+      alert('Visit https://termii.com/account/api to get your api key');
+    } else {
+      fetch(`${REACTVA_URL}/api/v1/page/visit/${data.projectId}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          page,
+          APIKey: data.APIKey,
+          device: deviceType(),
+          visitorId: IdFromStorage,
+          ...data.location,
+        }),
+        headers: {
+          'Content-Type': 'Application/json',
+          Accept: 'Application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((locate) => {
+          console.log(locate, '>>>>>>>');
+          socket.emit('pageView', {
+            platformName: data.platformName,
           });
         })
         .catch((error) => error);
@@ -63,6 +98,7 @@ const ReactVA = () => {
   return {
     setApi,
     initialize,
+    pageView,
   };
 };
 
