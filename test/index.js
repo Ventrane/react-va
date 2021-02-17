@@ -1,9 +1,8 @@
-import * as assert from 'assert';
+// Require the dev-dependencies
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import server from '../server';
 
-describe('Array', () => {
-  describe('#indexOf()', () => {
-    it('should return -1 when the value is not present', () => {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
-});
+const should = chai.should();
+
+chai.use(chaiHttp);
