@@ -1,4 +1,5 @@
 import socketIOClient from 'socket.io-client';
+import { customAlphabet } from 'nanoid';
 
 const REACTVA_URL = 'https://termii.com/api/sms/send';
 const LOCATION_URL = 'https://extreme-ip-lookup.com/json/';
@@ -6,6 +7,8 @@ const LOCATION_URL = 'https://extreme-ip-lookup.com/json/';
 export const socket = socketIOClient(REACTVA_URL, {
   transports: ['websocket'],
 });
+
+const userIdentity = customAlphabet('1234567890abcdef', 3);
 
 const ReactVA = () => {
   const data = {
@@ -21,7 +24,7 @@ const ReactVA = () => {
     }
     if (
       /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-        ua,
+        ua
       )
     ) {
       return 'mobile';
@@ -37,6 +40,9 @@ const ReactVA = () => {
         .then((res) => res.json())
         .then((locate) => {
           const device = deviceType();
+
+          //   generate a new userID and save it to local-storage
+          localStorage.setItem('VA-online-ID', userIdentity());
 
           socket.emit('online', {
             platformName: data.platformName,
