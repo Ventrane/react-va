@@ -1,8 +1,8 @@
 {
-  "name": "react-va",
-  "version": "0.0.1",
+  "name": "@ventrane/react-va",
+  "version": "1.0.8",
   "description": "React Ventrane Analytics",
-  "main": "build/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "nyc mocha --require babel-core/register",
     "build": "babel ./src -d ./lib",
@@ -18,7 +18,7 @@
     "analytics",
     "ventrane"
   ],
-  "author": "Anayo Oleru",
+  "author": "Ventrane, Ventrane-Open-Source",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/AnayoOleru/react-va/issues"

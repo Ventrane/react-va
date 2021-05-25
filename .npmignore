@@ -1,9 +1,2 @@
-.nyc_output/
-coverage/
-node_modules/
-.idea/
-.vscode/
-package.json
-.eslintrc.json
-.travis.yml
-.babelrc
+*
+!/lib/**/*
