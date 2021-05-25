@@ -2,8 +2,8 @@
 
 ### React Ventrane Analytics Module
 
-[![npm version](https://img.shields.io/npm/v/react-ga.svg?style=flat-square)](https://www.npmjs.com/package/@ventrane/react-va)
-[![npm downloads](https://img.shields.io/npm/dm/react-ga.svg?style=flat-square)](https://www.npmjs.com/package/@ventrane/react-va)
+[![npm version](https://img.shields.io/npm/v/@ventrane/react-va.svg?style=flat-square)](https://www.npmjs.com/package/@ventrane/react-va)
+[![npm downloads](https://img.shields.io/npm/dm/@ventrane/react-va.svg?style=flat-square)](https://www.npmjs.com/package/@ventrane/react-va)
 
 This is a JavaScript module that can be used to include Ventrane Analytics tracking code in a website or app that uses [React](https://facebook.github.io/react/) for its front-end codebase.
 
@@ -62,4 +62,4 @@ VA must be initialized using this function before any of the other tracking func
 ## Development
 ### Submitting changes/fixes
 
-Follow instructions inside [CONTRIBUTING.md](https://github.com/react-ga/react-ga/blob/master/CONTRIBUTING.md)
+Follow instructions inside [CONTRIBUTING.md](https://github.com/Ventrane-Open-Source/react-va/blob/main/CONTRIBUTING.md)
