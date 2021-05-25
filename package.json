@@ -1,6 +1,6 @@
 {
   "name": "@ventrane/react-va",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "React Ventrane Analytics",
   "main": "./lib/index.js",
   "scripts": {
@@ -16,7 +16,12 @@
   "keywords": [
     "react",
     "analytics",
-    "ventrane"
+    "ventrane",
+    "pageviews",
+    "clicks",
+    "marketing",
+    "web",
+    "mobile"
   ],
   "author": "Ventrane, Ventrane-Open-Source",
   "license": "MIT",
